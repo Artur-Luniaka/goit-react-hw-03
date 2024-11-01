@@ -1,0 +1,12 @@
+.text {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 5px;
+}
+
+.input {
+  border: none;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
