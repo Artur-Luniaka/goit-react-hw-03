@@ -2,6 +2,7 @@ import s from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { useId } from "react";
+import { PiUserPlusFill } from "react-icons/pi";
 
 const ContactForm = ({ onSubmit }) => {
   const initialValues = {
@@ -31,12 +32,16 @@ const ContactForm = ({ onSubmit }) => {
     >
       <Form className={s.form}>
         <div className={s.box}>
-          <label htmlFor={nameFieldId}>Name</label>
+          <label className={s.label} htmlFor={nameFieldId}>
+            Name
+          </label>
           <Field className={s.input} type="text" name="name" id={nameFieldId} />
           <ErrorMessage name="name" component="span" />
         </div>
         <div className={s.box}>
-          <label htmlFor={numberFieldId}>Number</label>
+          <label className={s.label} htmlFor={numberFieldId}>
+            Number
+          </label>
           <Field
             className={s.input}
             type="tel"
@@ -46,6 +51,7 @@ const ContactForm = ({ onSubmit }) => {
           <ErrorMessage name="number" component="span" />
         </div>
         <button className={s.button} type="submit">
+          <PiUserPlusFill />
           Add Contact
         </button>
       </Form>
