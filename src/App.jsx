@@ -1,6 +1,6 @@
 import "./App.css";
 import "modern-normalize/modern-normalize.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import contacts from "./assets/contacts.json";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
@@ -8,7 +8,13 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import { nanoid } from "nanoid";
 
 const App = () => {
-  const [contact, setContact] = useState(contacts);
+  const [contact, setContact] = useState(() => {
+    const savedContacts = localStorage.getItem("contacts");
+    if (!savedContacts) {
+      return contacts;
+    }
+    return JSON.parse(savedContacts);
+  });
   const [searchContact, setSearchContact] = useState("");
   const handleSearchContact = (e) => {
     setSearchContact(e.target.value);
@@ -24,6 +30,9 @@ const App = () => {
   const deleteContact = (id) => {
     setContact(contact.filter((contact) => contact.id !== id));
   };
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contact));
+  }, [contact]);
   return (
     <>
       <h1>Phonebook</h1>
