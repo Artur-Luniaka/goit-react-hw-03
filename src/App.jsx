@@ -21,13 +21,15 @@ const App = () => {
     setContact([...contact, contactWithId]);
     actions.resetForm();
   };
-
+  const deleteContact = (id) => {
+    setContact(contact.filter((contact) => contact.id !== id));
+  };
   return (
     <>
       <h1>Phonebook</h1>
       <ContactForm onSubmit={handleSubmit} />
       <SearchBox onChange={handleSearchContact} />
-      <ContactList contacts={handleContacts} />
+      <ContactList contacts={handleContacts} onDelete={deleteContact} />
     </>
   );
 };
